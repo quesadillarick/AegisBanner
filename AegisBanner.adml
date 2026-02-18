@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  AegisBanner.adml
+  English (US) language resource file for AegisBanner.admx
+
+  Installation:
+    Copy this file to:
+      %SystemRoot%\PolicyDefinitions\en-US\
+      \\<DOMAIN>\SYSVOL\<DOMAIN>\Policies\PolicyDefinitions\en-US\
+-->
+<policyDefinitionResources revision="1.0" schemaVersion="1.0"
+  xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+
+  <displayName>AegisBanner Group Policy Settings</displayName>
+  <description>
+    Administrative templates for the AegisBanner security classification
+    banner application. Settings are applied machine-wide via
+    HKLM\Software\Policies\AegisBanner.
+  </description>
+
+  <resources>
+    <stringTable>
+
+      <string id="AegisBanner_Cat">AegisBanner</string>
+
+      <!-- ShowHostname -->
+      <string id="ShowHostname">Show Computer Hostname</string>
+      <string id="ShowHostname_Help">
+        Controls whether the workstation hostname (%COMPUTERNAME%) is displayed
+        in the left zone of the banner.
+
+        Enabled  — hostname is displayed.
+        Disabled — hostname is hidden.
+        Not Configured — defaults to Enabled.
+      </string>
+
+      <!-- ClassificationText -->
+      <string id="ClassificationText">Classification Label (Center)</string>
+      <string id="ClassificationText_Help">
+        Sets the primary security classification string displayed in the centre
+        zone of the banner.
+
+        Examples: UNCLASSIFIED, CUI, SECRET, TOP SECRET
+
+        If not configured, the banner defaults to "UNCLASSIFIED".
+        Maximum 255 characters.
+      </string>
+
+      <!-- SecondaryLabel -->
+      <string id="SecondaryLabel">Secondary Label (Right)</string>
+      <string id="SecondaryLabel_Help">
+        Sets an optional secondary label displayed in the right zone of the
+        banner. Typically used for site, building, or system identifiers.
+
+        Examples: SITE-ALPHA, SYS-001, BLDG-7
+
+        Leave blank or do not configure to hide the right zone label.
+        Maximum 255 characters.
+      </string>
+
+      <!-- BgColor -->
+      <string id="BgColor">Banner Background Colour</string>
+      <string id="BgColor_Help">
+        Sets the background colour of the banner using a CSS-style hex code.
+
+        Format: #RRGGBB  (the leading # is required)
+
+        Common classification colours:
+          #007A33  — Green  (Unclassified / CUI)
+          #FF0000  — Red    (Secret)
+          #FF8C00  — Orange (Confidential)
+          #FFFF00  — Yellow (Top Secret)
+          #000000  — Black  (TS/SCI)
+
+        If not configured, defaults to #007A33 (green).
+      </string>
+
+      <!-- FgColor -->
+      <string id="FgColor">Banner Text (Foreground) Colour</string>
+      <string id="FgColor_Help">
+        Sets the text colour for all labels displayed in the banner.
+
+        Format: #RRGGBB  (the leading # is required)
+
+        Examples:
+          #FFFFFF  — White (recommended for dark backgrounds)
+          #000000  — Black (recommended for light backgrounds such as #FFFF00)
+
+        If not configured, defaults to #FFFFFF (white).
+      </string>
+
+      <!-- FontSize -->
+      <string id="FontSize">Banner Font Size (Points)</string>
+      <string id="FontSize_Help">
+        Sets the font size for text displayed in the banner, in typographic
+        points. The banner height adjusts automatically to accommodate the
+        selected font size.
+
+        Recommended values:
+          10 — Small  (compact; suitable for high-resolution displays)
+          11 — Normal (default)
+          14 — Large  (improved readability at distance)
+
+        Valid range: 6 – 72 points.
+        If not configured, defaults to 11.
+      </string>
+
+    </stringTable>
+
+    <presentationTable>
+
+      <presentation id="ClassificationText">
+        <textBox refId="ClassificationText_Value">
+          <label>Classification text:</label>
+          <defaultValue>UNCLASSIFIED</defaultValue>
+        </textBox>
+      </presentation>
+
+      <presentation id="SecondaryLabel">
+        <textBox refId="SecondaryLabel_Value">
+          <label>Secondary label:</label>
+          <defaultValue></defaultValue>
+        </textBox>
+      </presentation>
+
+      <presentation id="BgColor">
+        <textBox refId="BgColor_Value">
+          <label>Background colour (#RRGGBB):</label>
+          <defaultValue>#007A33</defaultValue>
+        </textBox>
+      </presentation>
+
+      <presentation id="FgColor">
+        <textBox refId="FgColor_Value">
+          <label>Text colour (#RRGGBB):</label>
+          <defaultValue>#FFFFFF</defaultValue>
+        </textBox>
+      </presentation>
+
+      <presentation id="FontSize">
+        <decimalTextBox refId="FontSize_Value" defaultValue="11">
+          Font size (points):
+        </decimalTextBox>
+      </presentation>
+
+    </presentationTable>
+
+  </resources>
+
+</policyDefinitionResources>

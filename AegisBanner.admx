@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  AegisBanner.admx
+  Group Policy Administrative Template — AegisBanner
+
+  Installation:
+    Copy this file to:
+      %SystemRoot%\PolicyDefinitions\             (local)
+      \\<DOMAIN>\SYSVOL\<DOMAIN>\Policies\PolicyDefinitions\  (Central Store)
+
+    Copy AegisBanner.adml to the matching \en-US\ subfolder.
+
+  Registry root:  HKEY_LOCAL_MACHINE\Software\Policies\AegisBanner
+-->
+<policyDefinitions revision="1.0" schemaVersion="1.0"
+  xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+
+  <policyNamespaces>
+    <target prefix="aegisbanner" namespace="AegisBanner.Policies.AegisBanner"/>
+    <using prefix="windows" namespace="Microsoft.Policies.Windows"/>
+  </policyNamespaces>
+
+  <resources minRequiredRevision="1.0"/>
+
+  <categories>
+    <category name="AegisBanner_Cat" displayName="$(string.AegisBanner_Cat)">
+      <parentCategory ref="windows:WindowsComponents"/>
+    </category>
+  </categories>
+
+  <policies>
+
+    
+    <!-- Show / Hide hostname                                                 -->
+    
+    <policy name="ShowHostname"
+            class="Machine"
+            displayName="$(string.ShowHostname)"
+            explainText="$(string.ShowHostname_Help)"
+            key="Software\Policies\AegisBanner"
+            valueName="ShowHostname">
+      <parentCategory ref="AegisBanner_Cat"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue><decimal value="1"/></enabledValue>
+      <disabledValue><decimal value="0"/></disabledValue>
+    </policy>
+
+    
+    <!-- Classification text (center zone)                                   -->
+    
+    <policy name="ClassificationText"
+            class="Machine"
+            displayName="$(string.ClassificationText)"
+            explainText="$(string.ClassificationText_Help)"
+            presentation="$(presentation.ClassificationText)"
+            key="Software\Policies\AegisBanner">
+      <parentCategory ref="AegisBanner_Cat"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <elements>
+        <text id="ClassificationText_Value"
+              valueName="ClassificationText"
+              maxLength="255"
+              required="true"/>
+      </elements>
+    </policy>
+
+    
+    <!-- Secondary label (right zone)                                         -->
+    
+    <policy name="SecondaryLabel"
+            class="Machine"
+            displayName="$(string.SecondaryLabel)"
+            explainText="$(string.SecondaryLabel_Help)"
+            presentation="$(presentation.SecondaryLabel)"
+            key="Software\Policies\AegisBanner">
+      <parentCategory ref="AegisBanner_Cat"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <elements>
+        <text id="SecondaryLabel_Value"
+              valueName="SecondaryLabel"
+              maxLength="255"
+              required="false"/>
+      </elements>
+    </policy>
+
+    
+    <!-- Background colour                                                    -->
+    
+    <policy name="BgColor"
+            class="Machine"
+            displayName="$(string.BgColor)"
+            explainText="$(string.BgColor_Help)"
+            presentation="$(presentation.BgColor)"
+            key="Software\Policies\AegisBanner">
+      <parentCategory ref="AegisBanner_Cat"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <elements>
+        <text id="BgColor_Value"
+              valueName="BgColor"
+              maxLength="7"
+              required="true"/>
+      </elements>
+    </policy>
+
+    
+    <!-- Foreground (text) colour                                             -->
+    
+    <policy name="FgColor"
+            class="Machine"
+            displayName="$(string.FgColor)"
+            explainText="$(string.FgColor_Help)"
+            presentation="$(presentation.FgColor)"
+            key="Software\Policies\AegisBanner">
+      <parentCategory ref="AegisBanner_Cat"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <elements>
+        <text id="FgColor_Value"
+              valueName="FgColor"
+              maxLength="7"
+              required="true"/>
+      </elements>
+    </policy>
+
+    
+    <!-- Font size                                                            -->
+    
+    <policy name="FontSize"
+            class="Machine"
+            displayName="$(string.FontSize)"
+            explainText="$(string.FontSize_Help)"
+            presentation="$(presentation.FontSize)"
+            key="Software\Policies\AegisBanner">
+      <parentCategory ref="AegisBanner_Cat"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <elements>
+        <decimal id="FontSize_Value"
+                 valueName="FontSize"
+                 minValue="6"
+                 maxValue="72"
+                 required="true"/>
+      </elements>
+    </policy>
+
+  </policies>
+
+</policyDefinitions>
